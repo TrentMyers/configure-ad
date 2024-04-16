@@ -34,7 +34,6 @@
   <h3>Create the Client VM</h3>
   <p>Similarly, establish a client VM named <strong>Client-1</strong> using Windows 10, aligning it within the same Resource Group and VNet to ensure seamless network communication. This setup is crucial for proper domain integration.</p>
   
-  <!-- Optional: Include a screenshot or diagram to visually represent the setup -->
 </section>
 
 <section id="ensure-connectivity">
@@ -43,10 +42,16 @@
   <ol>
     <li>Using Remote Desktop, access Client-1 and execute <code>ping -t [DC-1 IP address]</code> to test continuous connectivity.</li>
     <li>Login to DC-1, and specifically allow ICMPv4 traffic through the local Windows Firewall settings.</li>
+
+![image](https://github.com/TrentMyers/configure-ad/assets/132710625/1f5aad2e-35d6-4a39-ae4e-5c9b86783864)
+
+    
     <li>Confirm successful communication via a continuous ping from Client-1 to DC-1.</li>
   </ol>
   
-  <!-- Suggestion: Diagram or screenshot showing successful ping results -->
+![image](https://github.com/TrentMyers/configure-ad/assets/132710625/8f02f181-b95f-47bb-8dd6-9c6337194a90)
+
+  
 </section>
 
 <section id="install-ad">
