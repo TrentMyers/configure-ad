@@ -3,13 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Active Directory Configuration in Azure</title>
-<link rel="stylesheet" href="styles.css"> <!-- Ensure styles.css is well-prepared to enhance document presentation -->
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
 <header>
-  <h1>Configuring Active Directory in Azure</h1>
+  <i><b><h1>Configuring Active Directory in Azure</h1></b></i>
   <p>A comprehensive guide to setting up and managing Active Directory on Microsoft Azure, crafted meticulously for IT professionals and system administrators.</p>
 </header>
 
