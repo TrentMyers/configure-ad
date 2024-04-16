@@ -3,13 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="styles.css"> <!-- Assuming you have a CSS file for styles -->
+<title>Active Directory Configuration in Azure</title>
+<link rel="stylesheet" href="styles.css"> <!-- Ensure styles.css is well-prepared to enhance document presentation -->
 </head>
 <body>
 
 <header>
-  <h1><i><b>Configuring Active Directory in Azure</b></i></h1>
-  <p>A step-by-step guide to setting up Active Directory in Microsoft Azure.</p>
+  <h1>Configuring Active Directory in Azure</h1>
+  <p>A comprehensive guide to setting up and managing Active Directory on Microsoft Azure, crafted meticulously for IT professionals and system administrators.</p>
 </header>
 
 <nav>
@@ -27,69 +28,71 @@
 
 <section id="setup-resources">
   <h2>1. Setup Resources in Azure</h2>
+  <p>Begin by establishing the foundational infrastructure within Microsoft Azure, including virtual machines and network configurations necessary for a robust Active Directory setup.</p>
   <h3>Create the Domain Controller VM</h3>
-  <p>Name the VM <strong>DC-1</strong> with Windows Server 2022. Note the Resource Group and Virtual Network created during this process. Ensure the Domain Controller's NIC Private IP address is set to static.</p>
+  <p>Name the VM <strong>DC-1</strong> with Windows Server 2022. Ensure that the VM is assigned a static Private IP address and document the associated Resource Group and Virtual Network details for future reference.</p>
   
   <h3>Create the Client VM</h3>
-  <p>Name the VM <strong>Client-1</strong> with Windows 10, using the same Resource Group and Vnet. Ensure both VMs are within the same Vnet.</p>
+  <p>Similarly, establish a client VM named <strong>Client-1</strong> using Windows 10, aligning it within the same Resource Group and VNet to ensure seamless network communication. This setup is crucial for proper domain integration.</p>
   
-  <!-- Here you can insert a screenshot showing the Azure portal with the VMs configured -->
+  <!-- Optional: Include a screenshot or diagram to visually represent the setup -->
 </section>
 
 <section id="ensure-connectivity">
   <h2>2. Ensure Connectivity</h2>
+  <p>Validate network connectivity between your virtual machines to guarantee that the communication necessary for domain operations is in place.</p>
   <ol>
-    <li>Login to Client-1 with Remote Desktop and use <code>ping -t [DC-1 IP address]</code> to test connectivity.</li>
-    <li>Login to DC-1 and enable ICMPv4 on the local Windows Firewall.</li>
-    <li>Verify that the ping from Client-1 to DC-1 is successful.</li>
+    <li>Using Remote Desktop, access Client-1 and execute <code>ping -t [DC-1 IP address]</code> to test continuous connectivity.</li>
+    <li>Login to DC-1, and specifically allow ICMPv4 traffic through the local Windows Firewall settings.</li>
+    <li>Confirm successful communication via a continuous ping from Client-1 to DC-1.</li>
   </ol>
   
-  <!-- Diagram or screenshot showing successful ping results could be useful here -->
+  <!-- Suggestion: Diagram or screenshot showing successful ping results -->
 </section>
 
 <section id="install-ad">
   <h2>3. Install Active Directory</h2>
+  <p>Proceed with installing and configuring Active Directory Domain Services to form the backbone of your network’s identity management.</p>
   <ol>
-    <li>Login to DC-1 and install Active Directory Domain Services (AD DS).</li>
-    <li>Promote the server to a domain controller by setting up a new forest named <strong>mydomain.com</strong>.</li>
-    <li>Restart DC-1 and log in as <code>mydomain.com\labuser</code>.</li>
+    <li>On DC-1, install Active Directory Domain Services (AD DS) role.</li>
+    <li>Transform the server into a domain controller by initiating a new forest called <strong>mydomain.com</strong> and complete the domain setup.</li>
+    <li>Upon completion, restart DC-1 and ensure you can log in with the domain administrator credentials <code>mydomain.com\labuser</code>.</li>
   </ol>
 </section>
 
 <section id="manage-users">
   <h2>4. Manage Users and Groups</h2>
-  <p>Create organizational units and users within Active Directory Users and Computers (ADUC).</p>
+  <p>Establish a structured user management framework by creating organizational units and defining user roles within Active Directory.</p>
   <ol>
-    <li>Create an OU called "_EMPLOYEES".</li>
-    <li>Create another OU named "_ADMINS".</li>
-    <li>Create a user named <strong>Jane Doe</strong> with username <code>jane_admin</code> and add her to the "Domain Admins" group.</li>
-    <li>Use <code>jane_admin</code> as your admin account moving forward.</li>
+    <li>Create organizational units (OUs) named "_EMPLOYEES" and "_ADMINS" to categorize and manage user accounts and administrative accounts, respectively.</li>
+    <li>In the "_ADMINS" OU, create an administrator account for <strong>Jane Doe</strong> and assign her to the "Domain Admins" group, setting a precedent for role-based access control within your environment.</li>
   </ol>
 </section>
 
 <section id="join-domain">
   <h2>5. Join Client VM to Domain</h2>
+  <p>Integrate your client VM into the newly established domain environment to enable centralized management and authentication.</p>
   <ol>
-    <li>Adjust DNS settings in Azure Portal for Client-1 to point to DC-1's IP.</li>
-    <li>Restart Client-1, log in as local admin, and join it to <strong>mydomain.com</strong>.</li>
-    <li>Verify the addition of Client-1 in ADUC on DC-1.</li>
+    <li>Modify DNS settings in the Azure Portal for Client-1 to utilize DC-1's IP address, ensuring domain name resolution is handled effectively.</li>
+    <li>Reboot Client-1, and proceed to join it to the <strong>mydomain.com</strong> domain, finalizing its inclusion in the network.</li>
   </ol>
 </section>
 
 <section id="remote-desktop">
   <h2>6. Setup Remote Desktop for Users</h2>
-  <p>Configure Remote Desktop settings on Client-1 to allow domain users to connect.</p>
+  <p>Configure remote access capabilities to allow authorized domain users to connect to Client-1, enhancing flexibility and remote work options.</p>
   <ol>
-    <li>Login as <code>jane_admin</code> and modify system properties to enable Remote Desktop for "domain users".</li>
+    <li>As <code>jane_admin</code>, access the system properties of Client-1 and enable Remote Desktop, specifying access permissions for "domain users."</li>
   </ol>
-  <!-- Example or screenshot of the Remote Desktop settings could be included -->
+  <!-- Consider adding a screenshot of the Remote Desktop configuration panel -->
 </section>
 
 <section id="additional-users">
   <h2>7. Create Additional Users and Test Logins</h2>
+  <p>Expand your domain by adding more users and validating their operational capabilities through direct login tests.</p>
   <ol>
-    <li>Use PowerShell on DC-1 to run a script for generating multiple user accounts. Script available <a href="https://github.com/TrentMyers/AD-BULK-USERS">here</a>.</li>
-    <li>Log into Client-1 with a newly created user account to verify setup.</li>
+    <li>Utilize a PowerShell script on DC-1 to efficiently create multiple user accounts. The script can be accessed <a href="https://github.com/TrentMyers/AD-BULK-USERS">here</a>.</li>
+    <li>Test the login process for newly created users on Client-1 to confirm their proper configuration and operational status within the domain.</li>
   </ol>
 </section>
 
