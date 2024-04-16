@@ -88,7 +88,9 @@
   <ol>
     <li>As <code>jane_admin</code>, access the system properties of Client-1 and enable Remote Desktop, specifying access permissions for "domain users."</li>
   </ol>
-  <!-- Consider adding a screenshot of the Remote Desktop configuration panel -->
+  
+  ![image](https://github.com/TrentMyers/configure-ad/assets/132710625/3b41916e-6fb5-4e28-8c91-e37b21f050dd)
+
 </section>
 
 <section id="additional-users">
