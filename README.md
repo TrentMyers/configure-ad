@@ -88,7 +88,7 @@
 <section id="additional-users">
   <h2>7. Create Additional Users and Test Logins</h2>
   <ol>
-    <li>Use PowerShell on DC-1 to run a script for generating multiple user accounts. Script available <a href="https://github.com/joshmadakor1/AD_PS/blob/master/Generate-Names-Create-Users.ps1">here</a>.</li>
+    <li>Use PowerShell on DC-1 to run a script for generating multiple user accounts. Script available <a href="https://github.com/TrentMyers/AD-BULK-USERS">here</a>.</li>
     <li>Log into Client-1 with a newly created user account to verify setup.</li>
   </ol>
 </section>
